@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-demo
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        editor: vscode
+    spec:
+      containers:
+      - name: nginx
+        image: harbor.its.local/nginx-demo
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  Service Name
+spec:
+  selector:
+    app:  Selector Label
+  type:  LoadBalancer
+  ports:
+  - name:  nginx
+    port:  80
+    targetPort:  80
