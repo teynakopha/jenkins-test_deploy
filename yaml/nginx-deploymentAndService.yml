@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx-demo
+  name: nginxdemo
 spec:
-  replicas: 2
+  replicas: 1000
   template:
     metadata:
       labels:
@@ -11,15 +11,15 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: harbor.its.local/nginx-demo
+        image: harbor.its.local/library/nginx-demo
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name:  Service Name
+  name:  nginxdemo
 spec:
   selector:
-    app:  Selector Label
+    name:  nginxdemo
   type:  LoadBalancer
   ports:
   - name:  nginx
